@@ -9,6 +9,8 @@ enum Route {
     Home {},
     #[route("/blog/:id")]
     Blog { id: i32 },
+    #[route("/:..router")]
+    PageNotFound { router: Vec<String> },
 }
 
 fn main() {
@@ -32,6 +34,18 @@ fn Blog(id: i32) -> Element {
             class: "flex flex-col items-center justify-center h-screen",
             h1{ class:"text-3xl p-4", "Blog post {id}"}
         }
+    }
+}
+
+#[component]
+fn PageNotFound(router: Vec<String>) -> Element {
+    let path = router.join("/");
+    rsx! {
+        div {
+            class: "flex flex-col items-center justify-center h-screen",
+            h1 { class: "text-3xl p-4", "Page not found: The page `/{path}` you requested is missing" }
+        }
+        Link { to: Route::Home {}, "Go to counter" }
     }
 }
 
