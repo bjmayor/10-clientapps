@@ -41,7 +41,7 @@ pub struct Comment {
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct StoryPageData {
+pub struct StoryData {
     #[serde(flatten)]
     pub item: StoryItem,
     #[serde(default)]
