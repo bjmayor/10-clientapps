@@ -48,7 +48,7 @@ fn setup(app: &mut App) -> Result<(), Box<dyn std::error::Error>> {
             .resizable(true)
             .content_protected(true);
     }
-
+    #[allow(unused_variables)]
     let webview = builder.build()?;
 
     #[cfg(debug_assertions)]
@@ -164,7 +164,10 @@ fn setup_menu<R: Runtime>(app: &App<R>) -> Result<(), tauri::Error> {
             "save" => {}
             "saveas" => {}
             "process" => {}
-            "checkme" => {}
+            "checkme" => {
+                // toggle checkme status and update config and runtime state
+                // for runtime state - Arc<Mutex<State>> / ArcSwap
+            }
             _ => {}
         }
     });
